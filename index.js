@@ -5,13 +5,15 @@ import { fileURLToPath } from 'url';
 import path, { dirname } from 'path'
 import activeWindow from 'active-win';
 
+DEBUG_MODE = false
+
 const wait = time => new Promise((resolve,reject)=>setTimeout(resolve,time))
 const getThisDir = () => path.resolve(dirname(fileURLToPath(import.meta.url)),'.')
 const getFullPath = p => path.resolve(getThisDir(),p||'')
 
 const nircmd = command => new Promise((resolve,reject)=>{
 	const fullCommand = `${getFullPath('nircmd.exe')} ${command}`
-	console.log(fullCommand)
+	DEBUG_MODE && console.log(fullCommand)
 	exec(fullCommand, {cwd: getThisDir()},(err,stdo)=>{
 		if (err && err.code !== 4207175) {
 			return reject(err)
@@ -27,7 +29,7 @@ const getTargetExe = () => (
 	.then(aw=>path.basename(aw?.owner?.path))
 )
 
-wait(1000)
+wait(DEBUG_MODE ? 1000 : 0)
 .then(()=>getTargetExe())
 .then(target=>(
 	nircmd(`muteappvolume ${target} 1`)
