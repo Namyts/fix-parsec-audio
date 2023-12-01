@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import path, { dirname } from 'path'
 import activeWindow from 'active-win';
 
-DEBUG_MODE = false
+const DEBUG_MODE = false
 
 const wait = time => new Promise((resolve,reject)=>setTimeout(resolve,time))
 const getThisDir = () => path.resolve(dirname(fileURLToPath(import.meta.url)),'.')
