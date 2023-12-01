@@ -1,0 +1,17 @@
+{
+	"name": "fix-parsec-audio",
+	"version": "0.0.1",
+	"type": "module",
+	"bin": {
+		"fix-parsec-audio": "./index.js"
+	},
+	"scripts": {
+		"dev": "npx --yes nodemon --es-module-specifier-resolution=node --inspect index",
+		"start": "node --es-module-specifier-resolution=node index",
+		"clean": "npx --yes rimraf node_modules package-lock.json"
+	},
+	"dependencies": {
+		"active-win": "^8.1.1",
+		"nircmd": "^2.0.0"
+	}
+}
